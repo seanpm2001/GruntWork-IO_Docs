@@ -1,3 +1,7 @@
 # Configuring your Refarch for delivery 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor vitae purus faucibus ornare suspendisse sed nisi. At tempor commodo ullamcorper a. Eu volutpat odio facilisis mauris. Nec feugiat nisl pretium fusce id velit ut. In nibh mauris cursus mattis molestie a iaculis at erat. Et magnis dis parturient montes. At tempor commodo ullamcorper a lacus. Porta nibh venenatis cras sed felis eget velit aliquet. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Aenean euismod elementum nisi quis eleifend quam. Elit sed vulputate mi sit amet mauris commodo quis.
+The Gruntwork Reference Architecture allows you to configure key features of your particular deployment, including the compute stack, number of app environments, and your desired deployment region.
+
+Install the [Gruntwork command line interface (CLI)](https://github.com/gruntwork-io/gruntwork) to begin configuring your Reference Architecture for delivery.
+
+
