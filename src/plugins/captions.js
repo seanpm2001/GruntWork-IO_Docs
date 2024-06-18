@@ -1,4 +1,4 @@
-const visit = require("unist-util-visit")
+import { visit } from 'unist-util-visit';
 
 // This plugin repurposes the alt text specified for images to
 // automatically generate captions for them. For example:
