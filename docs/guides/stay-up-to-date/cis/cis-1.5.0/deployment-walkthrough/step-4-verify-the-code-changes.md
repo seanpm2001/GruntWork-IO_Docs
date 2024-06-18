@@ -20,69 +20,76 @@ We strongly recommend that you run `terraform plan` or `terragrunt plan` and ver
 If the migrations have been correctly executed then running `terraform plan`  or `terragrunt plan` will output a
 message similar to this one:
 
-    Plan: 0 to add, 6 to change, 0 to destroy.
+```
+Plan: 0 to add, 6 to change, 0 to destroy.
+```
 
 This indicates that the existing resources will be "updated in-place" when Terraform/Terragrunt `apply` is executed.
 
 The output of the diff will contain messages similar to these:
 
-    Terraform will perform the following actions:
+```
+Terraform will perform the following actions:
 
-    # module.rds.module.rds_alarms.aws_cloudwatch_metric_alarm.rds_disk_space_available[0] will be updated in-place
-    ~ resource "aws_cloudwatch_metric_alarm" "rds_disk_space_available" {
-        ...
-        }
-
-    # module.rds.module.rds_alarms.aws_cloudwatch_metric_alarm.rds_high_cpu_utilization[0] will be updated in-place
-    ~ resource "aws_cloudwatch_metric_alarm" "rds_high_cpu_utilization" {
-        ...
-        }
-
+# module.rds.module.rds_alarms.aws_cloudwatch_metric_alarm.rds_disk_space_available[0] will be updated in-place
+~ resource "aws_cloudwatch_metric_alarm" "rds_disk_space_available" {
     ...
+    }
 
-    Plan: 0 to add, 6 to change, 0 to destroy.
+# module.rds.module.rds_alarms.aws_cloudwatch_metric_alarm.rds_high_cpu_utilization[0] will be updated in-place
+~ resource "aws_cloudwatch_metric_alarm" "rds_high_cpu_utilization" {
+    ...
+    }
 
+...
+
+Plan: 0 to add, 6 to change, 0 to destroy.
+```
 
 ## The RDS migrations were not correctly executed
 
 If the migrations have not been correctly executed then running `terraform plan` or `terragrunt plan` will output a
 message similar to this one:
 
-    Plan: 11 to add, 0 to change, 11 to destroy.
+```
+Plan: 11 to add, 0 to change, 11 to destroy.
+```
 
 This indicates that executing Terraform or Terragrunt `apply` will destroy the existing resources and create new ones instead.
 
 The output `plan` will contain messages similar to these:
 
-    Terraform will perform the following actions:
+```
+Terraform will perform the following actions:
 
-    # module.database.aws_db_instance.primary[0] will be destroyed
-    # (because aws_db_instance.primary is not in configuration)
-    - resource "aws_db_instance" "primary" {
-        ...
-        }
-
-    # module.database.aws_db_subnet_group.db[0] will be destroyed
-    # (because aws_db_subnet_group.db is not in configuration)
-    - resource "aws_db_subnet_group" "db" {
-        ...
-        }
-
+# module.database.aws_db_instance.primary[0] will be destroyed
+# (because aws_db_instance.primary is not in configuration)
+- resource "aws_db_instance" "primary" {
     ...
+    }
 
-    # module.rds.module.database.aws_db_instance.primary[0] will be created
-    + resource "aws_db_instance" "primary" {
-        ...
-        }
-
-    # module.rds.module.database.aws_db_subnet_group.db[0] will be created
-    + resource "aws_db_subnet_group" "db" {
-        ...
-        }
-
+# module.database.aws_db_subnet_group.db[0] will be destroyed
+# (because aws_db_subnet_group.db is not in configuration)
+- resource "aws_db_subnet_group" "db" {
     ...
+    }
 
-    Plan: 11 to add, 0 to change, 11 to destroy.
+...
+
+# module.rds.module.database.aws_db_instance.primary[0] will be created
++ resource "aws_db_instance" "primary" {
+    ...
+    }
+
+# module.rds.module.database.aws_db_subnet_group.db[0] will be created
++ resource "aws_db_subnet_group" "db" {
+    ...
+    }
+
+...
+
+Plan: 11 to add, 0 to change, 11 to destroy.
+```
 
 ### If you are using Patcher
 
@@ -107,6 +114,7 @@ security, shared etc), and waiting them to successful update before applying the
 for `dev` to successfully finish before applying `prod`.
 
 Example of using Terragrunt, after running Patcher in the `dev` folder:
+
 ```
 aws-vault exec dev -- terragrunt run-all init
 aws-vault exec dev -- terragrunt run-all apply

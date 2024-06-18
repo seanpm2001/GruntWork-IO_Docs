@@ -133,22 +133,26 @@ Terragrunt configuration and semantically compare the JSON outputs.
 
 We use `-set` mode to make it easier to understand which blocks and attributes are different. In `set` mode, `jd` will output each diff in the following format:
 
-    @ [KEYS,TO,ITEM]
-    - REMOVED
-    + ADDED
+```
+@ [KEYS,TO,ITEM]
+- REMOVED
++ ADDED
+```
 
 Each element in the list after `@` indicates the index to the item that is different. For example, in the following, the
 first diff represents a difference in the `Title` attribute of the movie object that is in the 67th position of the
 `Movies` list:
 
-    @ ["Movies",67,"Title"]
-    - "Dr. Strangelove"
-    + "Dr. Evil Love"
-    @ ["Movies",67,"Actors","Dr. Strangelove"]
-    - "Peter Sellers"
-    + "Mike Myers"
-    @ ["Movies",102]
-    + {"Title":"Austin Powers","Actors":{"Austin Powers":"Mike Myers"}}
+```
+@ ["Movies",67,"Title"]
+- "Dr. Strangelove"
++ "Dr. Evil Love"
+@ ["Movies",67,"Actors","Dr. Strangelove"]
+- "Peter Sellers"
++ "Mike Myers"
+@ ["Movies",102]
++ {"Title":"Austin Powers","Actors":{"Austin Powers":"Mike Myers"}}
+```
 
 Like with `diff`, cross off any blocks, attributes, and input keys from the initial list that are different based
 on the output, except for `locals`. In the `jd` output, this would be the first element in each `@` entry, or the second
@@ -162,25 +166,29 @@ Terragrunt configuration that includes these values.
 1.  Create a new file to house the common configuration. This should be placed somewhere that can be easily linked to
     from the root of the repository. We recommend using the following folder structure:
 
-        .
-        ├── terragrunt.hcl
-        └── \_envcommon
-        └── CATEGORY
-        └── RESOURCE.hcl
+    ```
+    .
+    ├── terragrunt.hcl
+    └── \_envcommon
+    └── CATEGORY
+    └── RESOURCE.hcl
+    ```
 
     Where the common configuration files are placed in `_envcommon/CATEGORY/RESOURCE.hcl`. `CATEGORY` and `RESOURCE` should
     mimic the base folder structure of the Reference Architecture:
 
-        .
-        └── ACCOUNT
-        ├── REGION
-        │ ├── ENVIRONMENT
-        │ │ └── CATEGORY
-        │ │ └── RESOURCE
-        │ └── \_regional
-        │ └── RESOURCE
-        └── \_global
-        └── RESOURCE
+    ```
+    .
+    └── ACCOUNT
+    ├── REGION
+    │ ├── ENVIRONMENT
+    │ │ └── CATEGORY
+    │ │ └── RESOURCE
+    │ └── \_regional
+    │ └── RESOURCE
+    └── \_global
+    └── RESOURCE
+    ```
 
     For example, for the `vpc` component, the `CATEGORY` will be `networking`, and the `RESOURCE` will be `vpc`, resulting
     in a common configuration file located at `_envcommon/networking/vpc.hcl`.

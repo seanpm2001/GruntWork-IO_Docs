@@ -237,7 +237,7 @@ The DB instance identifier
 <HclListItem name="db_secret_arn" requirement="required" type="string">
 <HclListItemDescription>
 
-The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like {'username':'your_username','password':'your_password'}.
+The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like `{'username':'your_username','password':'your_password'}.
 
 </HclListItemDescription>
 </HclListItem>
