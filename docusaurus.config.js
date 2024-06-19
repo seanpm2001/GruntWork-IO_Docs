@@ -106,64 +106,33 @@ const config = {
         items: [
           {
             type: "doc",
-            position: "left",
-            label: "Intro",
-            docId: "intro/overview/intro-to-gruntwork",
-          },
-          {
-            type: "dropdown",
-            position: "left",
-            label: "Docs",
-            id: "docs",
-            items: [
-              {
-                type: "doc",
-                label: "DevOps Foundations",
-                docId: "foundations/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Library",
-                docId: "library/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Pipelines",
-                docId: "pipelines/overview/index",
-              },
-              {
-                type: "doc",
-                label: "Patcher",
-                docId: "patcher/index",
-              },
-              {
-                type: "doc",
-                label: "Reference Architecture",
-                docId: "refarch/whats-this/what-is-a-reference-architecture",
-              },
-              {
-                type: "doc",
-                label: "Developer Portal",
-                docId: "developer-portal/create-account",
-              },
-            ],
+            label: "DevOps Foundations",
+            docId: "foundations/overview/index",
           },
           {
             type: "doc",
-            label: "Library Reference",
-            docId: "library/reference/index",
-          },
-          { to: "/tools", label: "Tools", position: "left" },
-          { to: "/courses", label: "Courses", position: "left" },
-          {
-            href: "https://github.com/gruntwork-io/knowledge-base/discussions",
-            label: "Knowledge Base",
-            position: "right",
+            label: "Library",
+            docId: "library/overview/index",
           },
           {
-            href: "/support",
-            label: "Support",
-            position: "right",
+            type: "doc",
+            label: "Pipelines",
+            docId: "pipelines/overview/index",
+          },
+          {
+            type: "doc",
+            label: "Account Factory",
+            docId: "pipelines/overview/index",
+          },
+          {
+            type: "doc",
+            label: "Patcher",
+            docId: "patcher/index",
+          },
+          {
+            type: "doc",
+            label: "Legacy",
+            docId: "patcher/index",
           },
           {
             href: "https://app.gruntwork.io",
@@ -171,25 +140,45 @@ const config = {
             position: "right",
           },
           {
-            type: "dropdown",
-            label: "More…",
+            type: "doc",
+            label: "Library Reference",
+            docId: "library/reference/index",
+            position: "right",
+          },
+          {
+            href: "https://github.com/orgs/gruntwork-io/discussions",
+            label: "Knowledge Base",
+            position: "right",
+          },
+          {
+            href: "/support",
+            label: "Get Support",
+            position: "right",
+          },
+          {
+            href: "/support",
+            label: "Get Support",
             position: "right",
             id: "more_dropdown",
             items: [
+              {
+                href: "https://app.gruntwork.io",
+                label: "Sign In",
+              },
               {
                 href: "https://github.com/gruntwork-io/knowledge-base/discussions",
                 label: "Knowledge Base",
               },
               {
-                href: "/support",
-                label: "Support",
+                label: "Library Reference",
+                href: "library/reference/index",
               },
               {
-                href: "https://app.gruntwork.io",
-                label: "Sign In",
+                href: "/support",
+                label: "Get Support",
               },
             ],
-          },
+          }
         ],
       },
       footer: {
